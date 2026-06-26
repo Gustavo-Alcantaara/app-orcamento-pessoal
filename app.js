@@ -89,6 +89,6 @@ function cadastrarDespesa(){
         }
 } 
 
-function carregaListaDespesa(){
-    
+function carregaListaDespesas(){
+
 }
