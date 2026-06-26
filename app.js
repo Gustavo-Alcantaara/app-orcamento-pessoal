@@ -118,5 +118,45 @@ function cadastrarDespesa(){
 function carregaListaDespesas(){
 
     let despesas = Array()
-    bd.recuperarTodosRegistros()
+
+    despesas = bd.recuperarTodosRegistros()
+
+    let listaDespesas = document.getElementById('listaDespesas')
+
+    /*
+            <tr>
+                <td>03/11/2026</td>
+                <td>Alimentação</td>
+                <td>Compras</td>
+                <td>333</td>
+              </tr>
+    */
+
+    despesas.forEach(function(d){
+        
+        //cria linha da tabela
+        let linha = listaDespesas.insertRow()
+
+        //cria coluna da tabela
+        linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano}`
+        
+
+        switch(d.tipo){
+            case '1': d.tipo = 'Alimentação'
+            break
+            case '2': d.tipo = 'Educação'
+            break
+            case '3': d.tipo = 'Lazer'
+            break
+            case '4': d.tipo = 'Saúde'
+            break
+            case '5': d.tipo = 'Transporte'
+            break 
+        }
+        linha.insertCell(1).innerHTML = d.tipo
+
+        linha.insertCell(2).innerHTML = d.descricao
+        linha.insertCell(3).innerHTML = `R$${d.valor}`
+
+    })
 }
